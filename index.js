@@ -1,12 +1,12 @@
-var io          = require('socket.io-client');
-
+var io  = require('socket.io-client');
 //Localhost port 3000
-// var socket      = io.connect('http://localhost:3000',{reconnection:true});
+ var socket      = io.connect('http://localhost:3000',{reconnection:true});
 
 //heroku host
-var socket      =io.connect('https://gps-server-nodejs.herokuapp.com/',{reconnection:true});
+//var socket      =io.connect('https://gps-server-nodejs.herokuapp.com/',{reconnection:true});
 
-var connected2Server = false
+var connected2Server = false;
+var countSend = 0;
 
 //Base will collect infomation from Serial Port and Trasnmit to Server via Socket.io
 
@@ -28,7 +28,16 @@ function readSerialData(data) {
     if(connected2Server){
         console.log('\n\nReceiving ' + data.length + ' bytes from serial');
         console.log(data);  
-        socket.emit('base-send-GPS-message',data);
+        console.log(countSend + " times");
+
+        myObj ={"GPS":data,"count":countSend};
+
+        //Send data
+        socket.emit('base-send-GPS-message',myObj);  
+
+        //Increase countSend
+        countSend = countSend + 1;
+
         console.log('Send '+data.length +' bytes to Server');
     }else{
         console.log('\n\nNot connected to Server...');
