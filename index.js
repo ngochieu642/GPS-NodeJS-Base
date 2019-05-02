@@ -1,9 +1,9 @@
 var io  = require('socket.io-client');
 //Localhost port 3000
- var socket      = io.connect('http://localhost:3000',{reconnection:true});
+//  var socket      = io.connect('http://localhost:3000',{reconnection:true});
 
 //heroku host
-//var socket      =io.connect('https://gps-server-nodejs.herokuapp.com/',{reconnection:true});
+var socket = io.connect('https://gps-server-nodejs.herokuapp.com/',{reconnection:true});
 
 var connected2Server = false;
 var countSend = 0;
