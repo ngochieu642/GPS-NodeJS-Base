@@ -1,8 +1,8 @@
 # GPS-NodeJS-Base
 
 ## How to run
-1/ npm start\n 
-  The default COM is in the package.json (at script:"start")\n
+1/ npm start <br/>
+  The default COM is in the package.json (at script:"start")<br/>
 2/ node index.js yourCOMPort (ex: node index COM3)
 
 ## How it works 
